@@ -3,8 +3,8 @@
 let React = require('react/addons');
 let ReactTransitionGroup = React.addons.TransitionGroup;
 
-let getRepoList = require('components/repoList/getRepoList');
-let ListItemComponent = require('components/repolist/ListItemComponent');
+let getRepoList = require('components/getRepoList');
+let ListItemComponent = require('components/ListItemComponent');
 
 // CSS
 require('normalize.css');

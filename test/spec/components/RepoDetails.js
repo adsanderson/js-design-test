@@ -5,16 +5,16 @@
 // const TestUtils = React.addons.TestUtils;
 
 import createComponent from 'helpers/createComponent';
-import ListItemComponent from 'components/repolist/ListItemComponent.js';
+import RepoDetails from 'components/RepoDetails.js';
 
-describe('ListItemComponent', () => {
-    let ListItemComponentComponent;
+describe('RepoDetails', () => {
+    let RepoDetailsComponent;
 
     beforeEach(() => {
-        ListItemComponentComponent = createComponent(ListItemComponent);
+        RepoDetailsComponent = createComponent(RepoDetails);
     });
 
     it('should have its component name as default className', () => {
-        // expect(ListItemComponentComponent._store.props.className).toBe('ListItemComponent');
+        expect(RepoDetailsComponent._store.props.className).toBe('RepoDetails');
     });
 });

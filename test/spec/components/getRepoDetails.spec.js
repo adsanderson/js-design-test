@@ -1,6 +1,6 @@
 'use strict';
 
-const getRepoList = require('components/repoList/getRepoList');
+const getRepoList = require('components/getRepoList');
 const githubAPIMock = require('helpers/sindresorhus_repos.js');
 
 function jsonOk (body) {
