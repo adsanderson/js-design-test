@@ -5,11 +5,11 @@ var path = require('path');
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai-sinon'],
     files: [
       'test/helpers/pack/**/*.js',
       'test/helpers/react/**/*.js',
-      'test/spec/components/**/*.js'
+      'test/spec/components/**/*.spec.js'
     ],
     preprocessors: {
       'test/helpers/createComponent.js': ['webpack'],
@@ -66,12 +66,13 @@ module.exports = function (config) {
     colors: true,
     autoWatch: false,
     browsers: ['PhantomJS'],
-    reporters: ['dots'],
+    reporters: ['dots', 'progress'],
     captureTimeout: 60000,
-    singleRun: true,
+    singleRun: false,
     plugins: [
+        require('karma-mocha'),
+        require('karma-chai-sinon'),
         require('karma-webpack'),
-        require('karma-jasmine'),
         require('karma-phantomjs-launcher')
     ]
   });
