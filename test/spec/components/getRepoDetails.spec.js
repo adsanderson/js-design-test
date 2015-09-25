@@ -1,7 +1,7 @@
 'use strict';
 
-const getRepoList = require('components/getRepoList');
-const githubAPIMock = require('helpers/sindresorhus_repos.js');
+const getRepoDetails = require('components/getRepoDetails');
+const githubAPILanguagesMock = require('helpers/sindresorhus_repo_mock_languages.js');
 
 function jsonOk (body) {
   let mockResponse = new window.Response(JSON.stringify(body), {
@@ -27,7 +27,7 @@ function jsonError (status, body) {
 
 
 
-describe('getRepoList', () => {
+describe('getRepoDetails', () => {
     beforeEach(() => {
         sinon.stub(window, 'fetch');
     });
@@ -37,61 +37,42 @@ describe('getRepoList', () => {
     });
 
     it('expect the function to exist', () => {
-        expect(getRepoList).to.be.a("function");
+        expect(getRepoDetails).to.be.a("function");
     });
 
     describe('returning a positive response', function () {
 
         beforeEach(() => {
-            window.fetch.returns(jsonOk(githubAPIMock));
+            window.fetch.returns(jsonOk(githubAPILanguagesMock));
         });
 
 
-        it('expect getRepoList to return an array', function (done) {
-            getRepoList().then((repos) => {
-                expect(repos).to.be.an("array");
+        it('expect getRepoDetails to return an array', function (done) {
+            getRepoDetails().then((languages) => {
+                expect(languages).to.be.an("array");
                 done();
             });
         });
 
-        it('expect getRepoList to return an array sorted by stargazers', function (done) {
-            getRepoList().then((repos) => {
-                const itemStars1 = repos[0].stargazers_count;
-                const itemStars2 = repos[1].stargazers_count;
-                const itemStars3 = repos[2].stargazers_count;
-                expect(itemStars1).to.be.at.least(itemStars2);
-                expect(itemStars2).to.be.at.least(itemStars3);
+        it('expect item in array to have a name and percentage', function (done) {
+            getRepoDetails().then((languages) => {
+                //expect(repos).to.be.an("array");
+                let language = languages[0];
+                expect(language).to.have.keys(['name', 'percentage']);
+                expect(language.name).to.be.a('string');
+                expect(language.percentage).to.be.a('string');
                 done();
             });
         });
 
-        it('expect the top 20 items to be returned', function (done) {
-            getRepoList().then((repos) => {
-                const numberOfItems = 20;
-                expect(githubAPIMock).to.have.length.above(numberOfItems);
-                expect(repos).to.have.length.of.at.most(numberOfItems);
+        it('expect the percentage to contain a percentage symbol', function (done) {
+            getRepoDetails().then((languages) => {
+                let language = languages[0];
+                expect(language.percentage).to.have.string("%");
                 done();
             });
         });
 
-        it('expect each repo item to be filtered to the relevant data for the component', function (done) {
-            getRepoList().then((repos) => {
-
-                const expectedRepoKeys = [
-                    "id",
-                    "name",
-                    "stargazers_count",
-                    "watchers_count",
-                    "forks_count"
-                ];
-
-                const testRepoItem = repos[0];
-
-                expect(testRepoItem).to.have.keys(expectedRepoKeys);
-
-                done();
-            });
-        });
     });
 
 });

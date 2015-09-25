@@ -3,8 +3,6 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-const sortByOrder = require('lodash/collection/sortByOrder');
-
 function checkStatus (response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -19,36 +17,27 @@ function parseJSON (response) {
   return response.json();
 }
 
-function sortRepoList (unsortedListOfRepos) {
-    return sortByOrder(unsortedListOfRepos, ['stargazers_count'], ['desc']);
+function returnLangaugesWithPercentage (languagesObj) {
+  let languagesArray = [];
+  let totalLines = 0;
+  Object.keys(languagesObj).forEach((prop) => {
+    totalLines += languagesObj[prop];
+  });
+  Object.keys(languagesObj).forEach((prop) => {
+    let percentage = Math.round((languagesObj[prop] / totalLines) * 100);
+    languagesArray.push({
+      name: prop,
+      percentage: percentage + '%'
+    });
+  });
+  return languagesArray;
 }
 
-function sliceRepoList (sortedRepoList) {
-  const numberOfItems = 20;
-  return sortedRepoList.slice(0, numberOfItems);
-}
-
-function repoItemForComponent (repoItem) {
-  return {
-    id: repoItem.id,
-    name: repoItem.name,
-    stargazers_count: repoItem.stargazers_count,
-    watchers_count: repoItem.watchers_count,
-    forks_count: repoItem.forks_count
-  };
-}
-
-function repoListForComponent (slicedRepoList) {
-    return slicedRepoList.map(repoItemForComponent);
-}
-
-function getRepoList () {
-    return fetch('https://api.github.com/users/sindresorhus/repos')
+function getRepoDetails (repo) {
+    return fetch('https://api.github.com/repos/sindresorhus/' + repo + '/languages')
         .then(checkStatus)
         .then(parseJSON)
-        .then(sortRepoList)
-        .then(sliceRepoList)
-        .then(repoListForComponent);
+        .then(returnLangaugesWithPercentage);
 }
 
-module.exports = getRepoList;
+module.exports = getRepoDetails;
