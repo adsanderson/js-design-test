@@ -9,7 +9,7 @@ describe('JsDesignTestApp', () => {
     container.id = 'content';
     document.body.appendChild(container);
 
-    JsDesignTestApp = require('components/JsDeignTestApp.js');
+    JsDesignTestApp = require('components/JsDesignTestApp.js');
     component = React.createElement(JsDesignTestApp);
   });
 
