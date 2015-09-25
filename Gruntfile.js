@@ -103,15 +103,25 @@ module.exports = function (grunt) {
           ]
         }]
       }
+    },
+
+    env: {
+      dev: {
+        NODE_ENV: 'development'
+      },
+      prod: {
+        NODE_ENV: 'production'
+      }
     }
   });
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'open:dist', 'connect:dist']);
+      return grunt.task.run(['env:prod', 'build', 'open:dist', 'connect:dist']);
     }
 
     grunt.task.run([
+      'env:dev',
       'open:dev',
       'webpack-dev-server'
     ]);
@@ -119,7 +129,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', ['karma']);
 
-  grunt.registerTask('build', ['clean', 'copy', 'webpack']);
+  grunt.registerTask('build', ['env:prod', 'clean', 'copy', 'webpack']);
 
   grunt.registerTask('default', []);
 };

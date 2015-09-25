@@ -66,9 +66,9 @@ module.exports = function (config) {
     colors: true,
     autoWatch: false,
     browsers: ['PhantomJS'],
-    reporters: ['dots', 'progress'],
+    reporters: ['dots'],
     captureTimeout: 60000,
-    singleRun: false,
+    singleRun: true,
     plugins: [
         require('karma-mocha'),
         require('karma-chai-sinon'),
