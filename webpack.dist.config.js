@@ -18,7 +18,7 @@ module.exports = {
 
   debug: false,
   devtool: false,
-  entry: './src/components/JsDeignTestApp.js',
+  entry: './src/components/JsDesignTestApp.js',
 
   stats: {
     colors: true,

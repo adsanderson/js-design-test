@@ -37,10 +37,17 @@ let JsDeignTestApp = React.createClass({
         });
 
         return (
-            <div className="main">
-                <ReactTransitionGroup transitionName="fade">
-                    {repos}
-                </ReactTransitionGroup>
+            <div>
+                <div className="gb-header">
+                    <a href="https://github.com/sindresorhus">sindresorhus</a>
+                </div>
+                <div className="gb-main">
+                    <ReactTransitionGroup transitionName="fade">
+                        <ul>
+                            {repos}
+                        </ul>
+                    </ReactTransitionGroup>
+                </div>
             </div>
         );
   }

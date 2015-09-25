@@ -1,41 +1,48 @@
 /* Stiziles */
 
 html, body {
-  background: #222222;
+  background: #F3F3ED;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* main */
 
-.main {
-  width: 100%;
-  height: 100%;
-  background: #222222;
-  color: #fff;
-}
-
-.main img {
-  width: 103px;
-  height: 89px;
-  margin-bottom: 10px;
+.gb-header {
   text-align: center;
+  font-weight: 700;
 }
 
-/* transitions */
-
-.fade-enter {
-  opacity: 0.01;
-  transition: opacity .5s ease-in;
+.gb-main {
+  max-width: 910px;
+  height: 100%;
+  background: #fff;
+  color: #5B5B46;
+  margin: 0 auto;
 }
 
-.fade-enter.fade-enter-active {
-  opacity: 1;
+.gb-main ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.fade-leave {
-  opacity: 1;
-  transition: opacity .5s ease-in;
+.gb-main li {
+  padding: 10px;
+  border-bottom:  1px solid #F3F3ED;
+  margin: 8px 20px;
 }
 
-.fade-leave.fade-leave-active {
-  opacity: 0.01;
+.gb-name {
+  font-weight: 700;
+}
+
+.gb-update {
+  margin-left: 15px;
+}
+
+.gb-counts {
+  float: right;
+}
+.gb-counts .fa {
+  margin: 0 8px;
 }
