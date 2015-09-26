@@ -12,6 +12,8 @@ Grunt.js
 
 To install Grunt.js run `$ npm install -g grunt-cli` from your terminal.
 
+To install the application dependencies run `$ npm install`
+
 ### Testing
 
 To run the tests for the application run `$ grunt test`
