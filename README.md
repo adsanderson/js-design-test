@@ -2,6 +2,8 @@ A simple react powered web app to retrieve the top 20 starred repos of Sindre So
 
 ## Installation
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/adsanderson/js-design-test.svg)](https://greenkeeper.io/)
+
 ### Prerequisites
 
 Node.js 
